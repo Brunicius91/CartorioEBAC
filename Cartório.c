@@ -19,10 +19,7 @@ int registro() //Função responsável por cadastrar cada usuário no sistema
 	
 	FILE *file; //Cria o arquivo
 	file = fopen(arquivo, "w"); //Cria o arquivo "W de escrita"
-	fprintf(file,cpf); //Salva o valor da varial
-	fclose(file); //Fecha o arquivo
-	
-	file = fopen(arquivo, "a"); //Abrindo o arquivo para atualizar informação
+	fprintf(file,cpf); //Salva o valor da varial	
 	fprintf(file,","); //Colocar virgula entre as informações
 	fclose(file); //Fecha o arquivo
 	
@@ -31,9 +28,6 @@ int registro() //Função responsável por cadastrar cada usuário no sistema
 	
 	file = fopen(arquivo, "a"); //Atualiza o arquivo com o nome
 	fprintf(file,nome);
-	fclose(file);
-	
-	file = fopen(arquivo, "a"); //Abrindo o arquivo para "a" atualizar informação
 	fprintf(file,","); //Colocar virgula entre as informações
 	fclose(file); //Fecha o arquivo
 	
@@ -42,10 +36,6 @@ int registro() //Função responsável por cadastrar cada usuário no sistema
 	
 	file = fopen(arquivo, "a"); //Abrindo o arquivo para atualizar informação
 	fprintf(file,sobrenome);
-	fclose(file); //Fecha o arquivo 
-	
-	
-	file = fopen(arquivo, "a"); //Abrindo o arquivo para atualizar informação
 	fprintf(file,",");//Colocar virgula entre as informações
 	fclose(file); //Fecha o arquivo
 	
@@ -112,55 +102,70 @@ int deletar()
 }
 
 int main()
-	{
+{
 	int opcao=0; //Definindo as variáveis
 	int laco=1; //Definindo que o programa volte ao inicio após uma escolha
+	char senhadigitada[10]="a"; //Criando a variável senha
+	int comparacao; 
+	setlocale(LC_ALL, "portuguese");
 	
-	for(laco=1;laco=1;)
+	printf("### Cartório da EBAC ###\n\n");
+	printf("Login de administrador!\n\nDigite a sua senha: ");
+	scanf("%s",senhadigitada); //Armazenando a senha digitada
+	
+	comparacao = strcmp(senhadigitada, "admin"); //Comparando a senha digitada com a já salva no sistema "admin"
+	
+	if(comparacao == 0) 
 	{
-		
-		system("cls"); //Limpando a tela para aparecer o Menu inicial
-		
-		setlocale(LC_ALL, "Portuguese"); //Definindo linguagem
-	
-		printf("### Cartório da EBAC ###\n\n"); //Inicio do menu
-		printf("Escolha a opção desejada no menu:\n\n");
-		printf("\t1 - Registrar nomes\n");
-		printf("\t2 - Consultar nomes\n");
-		printf("\t3 - Deletar nomes\n");
-		printf("\t4 - Sair do sistema\n\n");
-		printf("Opção:"); //Fim do menu
-	
-		scanf("%d", &opcao); //Armazenando escolha do usuário
-	
-		system("cls"); //Limpando a tela do menu após selecionar uma opção
-		
-		
-		switch(opcao) //Começo da escolha das opções
+		system ("cls");
+		for(laco=1;laco=1;)
 		{
-			case 1:
-			registro(); //Chamada da função registro	
-			break;
+		
+			system("cls"); //Limpando a tela para aparecer o Menu inicial
+		
+			setlocale(LC_ALL, "Portuguese"); //Definindo linguagem
+	
+			printf("### Cartório da EBAC ###\n\n"); //Inicio do menu
+			printf("Escolha a opção desejada no menu:\n\n");
+			printf("\t1 - Registrar nomes\n");
+			printf("\t2 - Consultar nomes\n");
+			printf("\t3 - Deletar nomes\n");
+			printf("\t4 - Sair do sistema\n\n");
+			printf("Opção:"); //Fim do menu
+	
+			scanf("%d", &opcao); //Armazenando escolha do usuário
+	
+			system("cls"); //Limpando a tela do menu após selecionar uma opção
+		
+		
+			switch(opcao) //Começo da escolha das opções
+			{
+				case 1:
+				registro(); //Chamada da função registro	
+				break;
 			
-			case 2:
-			consulta(); //Chamada da função consulta
-			break;
+				case 2:
+				consulta(); //Chamada da função consulta
+				break;
 			
-			case 3:
-			deletar(); //Chamada da função consultar
-			break;
+				case 3:
+				deletar(); //Chamada da função consultar
+				break;
 			
-			case 4:
+				case 4:
 			
-			printf("Obrigado por usar o sistema!\n");
-			return 0;
-			break;
+				printf("Obrigado por usar o sistema!\n");
+				return 0;
+				break;
 						
-			default:
-			printf("Opção não disponível\n");
-			system("pause");
-			break; //Fim da escolha das opções
+				default:
+				printf("Opção não disponível\n");
+				system("pause");
+				break; //Fim da escolha das opções
 				
-		}	
+			}	
+		}
 	}
+	else
+		printf("Senha incorreta!");
 }
